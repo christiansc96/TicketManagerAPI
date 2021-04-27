@@ -1,0 +1,11 @@
+﻿TicketManagerAPI/.vs
+TicketManagerAPI/TicketManagerAPI.Repository/obj
+TicketManagerAPI/TicketManagerAPI.Database/obj
+TicketManagerAPI/TicketManagerAPI/obj
+TicketManagerAPI/TicketManagerAPI/bin
+TicketManagerAPI/TicketManagerAPI.Database/bin
+TicketManagerAPI/TicketManagerAPI.DataLogic/bin
+TicketManagerAPI/TicketManagerAPI.DataLogic/obj
+TicketManagerAPI/TicketManagerAPI.DTOs/bin
+TicketManagerAPI/TicketManagerAPI.DTOs/obj
+TicketManagerAPI/TicketManagerAPI.Repository/bin

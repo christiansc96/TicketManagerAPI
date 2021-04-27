@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TicketManagerAPI.Database\TicketManagerAPI.Database.csproj" />
+    <ProjectReference Include="..\TicketManagerAPI.DTOs\TicketManagerAPI.DTOs.csproj" />
+    <ProjectReference Include="..\TicketManagerAPI.Repository\TicketManagerAPI.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
