@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,8 +27,8 @@ namespace TicketManagerAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TicketManagerAPI", Version = "v1" });
             });
 
-            // For Entity Framework  
-            services.AddDbContext<DatabaseContext>();
+            //services.AddDbContext<DatabaseContext>();
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TicketManagerDB")));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }

@@ -50,5 +50,27 @@ namespace TicketManagerAPI.Controllers
             }
             return await Task.FromResult(BadRequest());
         }
+
+        [HttpPut("disable/{id}")]
+        public async Task<IActionResult> DisableTicket(int id)
+        {
+            bool result = await TicketLogic.DisableTicket(id);
+            if (result)
+            {
+                return await Task.FromResult(Ok());
+            }
+            return await Task.FromResult(BadRequest());
+        }
+
+        [HttpPut("enable/{id}")]
+        public async Task<IActionResult> EnableTicket(int id)
+        {
+            bool result = await TicketLogic.EnableTicket(id);
+            if (result)
+            {
+                return await Task.FromResult(Ok());
+            }
+            return await Task.FromResult(BadRequest());
+        }
     }
 }

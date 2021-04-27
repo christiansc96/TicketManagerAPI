@@ -5,11 +5,9 @@ namespace TicketManagerAPI.Database.Context
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<Ticket> Ticket { get; set; }
+        public DatabaseContext(DbContextOptions<DatabaseContext> options)
+            : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=WINDOWS-JN3O5DG;Database=TicketManagerBD;Trusted_Connection=True;");
-        }
+        public DbSet<Ticket> Ticket { get; set; }
     }
 }

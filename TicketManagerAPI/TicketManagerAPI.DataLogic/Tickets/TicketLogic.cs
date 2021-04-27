@@ -39,7 +39,7 @@ namespace TicketManagerAPI.DataLogic.Tickets
             bool result = await _ticketRepository.CreateAsync(new Ticket()
             {
                 UserName = ticket.UserName,
-                CreatedAt = DateTime.Now,
+                CreatedAt = ticket.CreatedAt,
                 ModifiedAt = new DateTime(2019, 01, 01),
                 Status = true
             });
@@ -55,8 +55,36 @@ namespace TicketManagerAPI.DataLogic.Tickets
             if (!LogicValidations.ValidateIfDataIsNull(ticketFromDatabase))
             {
                 ticketFromDatabase.UserName = ticket.UserName;
-                ticketFromDatabase.ModifiedAt = DateTime.Now;
+                ticketFromDatabase.ModifiedAt = ticket.ModifiedAt;
                 ticketFromDatabase.Status = ticket.Status;
+                result = await _ticketRepository.UpdateAsync(ticketFromDatabase);
+            }
+            return await Task.FromResult(result);
+        }
+
+        public async Task<bool> DisableTicket(int id)
+        {
+            bool result = false;
+            Ticket ticketFromDatabase = await _ticketRepository
+                .GetByIdAsync(where: ticket => ticket.Status == true && ticket.TicketId == id);
+
+            if (!LogicValidations.ValidateIfDataIsNull(ticketFromDatabase))
+            {
+                ticketFromDatabase.Status = false;
+                result = await _ticketRepository.UpdateAsync(ticketFromDatabase);
+            }
+            return await Task.FromResult(result);
+        }
+
+        public async Task<bool> EnableTicket(int id)
+        {
+            bool result = false;
+            Ticket ticketFromDatabase = await _ticketRepository
+                .GetByIdAsync(where: ticket => ticket.Status == true && ticket.TicketId == id);
+
+            if (!LogicValidations.ValidateIfDataIsNull(ticketFromDatabase))
+            {
+                ticketFromDatabase.Status = true;
                 result = await _ticketRepository.UpdateAsync(ticketFromDatabase);
             }
             return await Task.FromResult(result);
